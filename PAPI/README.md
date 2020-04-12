@@ -1,10 +1,10 @@
 ## PAPI
 
-The CPU host file (*pipeline.cu*) launches each GPU instruction's microbenchmark while using PAPI API - NVML technique to compute its energy consumption. The instructions microbenchmarks are provided in *Instructions_Microbenchmarks* directory. 
+The CPU host file (*pipeline.cu*) launches each GPU instruction's microbenchmark while using PAPI API - NVML technique to compute its energy consumption. The instructions microbenchmarks are provided in ***Instructions_Microbenchmarks*** directory. 
 
 ### Usage
 
-* PAPI have to be pre-installed in ther system. Instructions on how to install PAPI can be found at http://icl.cs.utk.edu/papi/software
+* PAPI with nvml component have to be pre-installed in a GPU server. Instructions on how to install PAPI can be found at http://icl.cs.utk.edu/papi/software
 
 * Configure the path of  Cuda toolkit (*nvcc*) in the Makefile
 
