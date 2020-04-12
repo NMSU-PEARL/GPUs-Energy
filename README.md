@@ -6,7 +6,7 @@
 
 ## Hardware Dependencies
 
-* A GPU device with cc=30+ (Kepler architecture)
+* A GPU device with compute capabilty = 3.5 or later (Kepler architecture)
 
 ## Software Dependencies
 
