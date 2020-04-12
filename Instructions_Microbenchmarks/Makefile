@@ -37,10 +37,9 @@ opt: pipeline.cu $(UTILOBJS)
 	@./dryrun.out
 
 run: $(type)
-	@mkdir output
+	@mkdir -p output
 	@./run.sh
 
-# make type=opt run
 
 clean:
 	rm -f a_dlink* pipeline.cpp* pipeline.cubin* pipeline.cudafe* pipeline.fatbin* pipeline.module_id pipeline.ptx
