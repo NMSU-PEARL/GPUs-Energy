@@ -8,7 +8,7 @@ The CPU host file (*pipeline.cu*) launches each GPU instruction's microbenchmark
 
 * Configure the *ARCH_CC* variable in the Makefile depending on the target NVIDIA GPU architecture.   
   - i.g., ***Volta TITAN V*** has a 70 SM arch generation and a 70 compute capabilty. Thus, ARCH_CC =70,  
-  - i.g., ***Volta TITAN RTX*** as a 75 SM arch generation and a 75 compute capabilty. Thus, ARCH_CC =75
+  - i.g., ***Turing TITAN RTX*** has a 75 SM arch generation and a 75 compute capabilty. Thus, ARCH_CC =75
 
 * To compile and run:
 
