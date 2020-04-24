@@ -8,7 +8,7 @@
 ** Paper          :  Y. Arafa et al., "Verified Instruction-Level Energy Consumption 
 **                                      Measurement for NVIDIA GPUs," CF'20 
 ** 
-** Notes          :  This function is used with the optimized (-O3) nvcc compiler flag              
+** Notes          :  This file is used with the optimized (-O3) nvcc compiler flag              
 */
 
 
@@ -901,12 +901,12 @@ BB0_1:
     add.f64         %fd3, %fd3, 1.0; 
 
     //=======================================
-    div.f64         %fd9, %fd7, %fd3;
-    div.f64         %fd10, %fd3, %fd9;
-    div.f64         %fd11, %fd9, %fd10;
-    div.f64         %fd12, %fd10, %fd11;
-    div.f64         %fd13, %fd11, %fd12;
-    div.f64         %fd14, %fd12, %fd13;
+    div.rn.f64         %fd9, %fd7, %fd3;
+    div.rn.f64         %fd10, %fd3, %fd9;
+    div.rn.f64         %fd11, %fd9, %fd10;
+    div.rn.f64         %fd12, %fd10, %fd11;
+    div.rn.f64         %fd13, %fd11, %fd12;
+    div.rn.f64         %fd14, %fd12, %fd13;
     //=======================================
 
     ld.global.f32   %f9, [%rd4 + 12];

@@ -42,6 +42,6 @@ run: $(type)
 
 clean:
 	rm -f a_dlink* pipeline.cpp* pipeline.cubin* pipeline.cudafe* pipeline.fatbin* pipeline.module_id pipeline.ptx
-	rm -f a.out dryrun*
+	rm -f *.out dryrun* *.o
 	rm -rf output/*
 

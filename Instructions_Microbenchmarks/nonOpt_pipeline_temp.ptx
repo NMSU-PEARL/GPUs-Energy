@@ -8,7 +8,7 @@
 ** Paper          :  Y. Arafa et al., "Verified Instruction-Level Energy Consumption 
 **                                      Measurement for NVIDIA GPUs," CF'20 
 ** 
-** Notes          :  This function is used with the non-optimized (-O)) nvcc compiler flag              
+** Notes          :  This file is used with the non-optimized (-O)) nvcc compiler flag              
 */
 
 
@@ -930,26 +930,26 @@ BB0_1:
     
 BB0_1:
     
-    div.f64         %fd9, %fd7, %fd3;
-    div.f64         %fd10, %fd3, %fd9;
-    div.f64         %fd11, %fd9, %fd10;
-    div.f64         %fd12, %fd10, %fd11;
-    div.f64         %fd13, %fd11, %fd12;
-    div.f64         %fd14, %fd12, %fd13;
-    div.f64         %fd15, %fd13, %fd14;
-    div.f64         %fd16, %fd14, %fd15;
-    div.f64         %fd17, %fd15, %fd16;
-    div.f64         %fd18, %fd16, %fd17;
-    div.f64         %fd19, %fd17, %fd18;
-    div.f64         %fd20, %fd18, %fd19;
-    div.f64         %fd21, %fd19, %fd20;
-    div.f64         %fd22, %fd20, %fd21;
-    div.f64         %fd23, %fd21, %fd12;
-    div.f64         %fd24, %fd22, %fd23;
-    div.f64         %fd25, %fd23, %fd24;
-    div.f64         %fd26, %fd24, %fd25;
-    div.f64         %fd27, %fd25, %fd26;
-    div.f64         %fd28, %fd26, %fd27;
+    div.rn.f64         %fd9, %fd7, %fd3;
+    div.rn.f64         %fd10, %fd3, %fd9;
+    div.rn.f64         %fd11, %fd9, %fd10;
+    div.rn.f64         %fd12, %fd10, %fd11;
+    div.rn.f64         %fd13, %fd11, %fd12;
+    div.rn.f64         %fd14, %fd12, %fd13;
+    div.rn.f64         %fd15, %fd13, %fd14;
+    div.rn.f64         %fd16, %fd14, %fd15;
+    div.rn.f64         %fd17, %fd15, %fd16;
+    div.rn.f64         %fd18, %fd16, %fd17;
+    div.rn.f64         %fd19, %fd17, %fd18;
+    div.rn.f64         %fd20, %fd18, %fd19;
+    div.rn.f64         %fd21, %fd19, %fd20;
+    div.rn.f64         %fd22, %fd20, %fd21;
+    div.rn.f64         %fd23, %fd21, %fd12;
+    div.rn.f64         %fd24, %fd22, %fd23;
+    div.rn.f64         %fd25, %fd23, %fd24;
+    div.rn.f64         %fd26, %fd24, %fd25;
+    div.rn.f64         %fd27, %fd25, %fd26;
+    div.rn.f64         %fd28, %fd26, %fd27;
    
     add.u32 	    %r79, %r79, 1;
 	setp.ne.s32	    %p1, %r79, 0;
