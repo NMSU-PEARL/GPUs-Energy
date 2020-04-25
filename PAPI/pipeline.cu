@@ -9,7 +9,7 @@
 ** Paper          :  Y. Arafa et al., "Verified Instruction-Level Energy Consumption 
 **                                     Measurement for NVIDIA GPUs," CF'20
 ** 
-** Notes          :  This code uses some of the open source code provided by PAPI-API               
+** Notes          :  This file uses some of the open-source codes provided by PAPI-API               
 */
 
 #include <cuda.h>
@@ -22,7 +22,7 @@
 #define PAPI
  
  // Host function
-int main(int argc, const char* argv[]){
+int main(int argc, char* argv[]){
 
 int n=10;
 /* Host variable Declaration */
@@ -43,13 +43,6 @@ c = (int *)malloc(n * sizeof(int));
     int retval, i;
     int EventSet = PAPI_NULL;
     long long values[NUM_EVENTS];
-    /* REPLACE THE EVENT NAME 'PAPI_FP_OPS' WITH A CUDA EVENT 
-        FOR THE CUDA DEVICE YOU ARE RUNNING ON.
-        RUN papi_native_avail to get a list of CUDA events that are 
-        supported on your machine */
-        // e.g. on a P100 nvml:::Tesla_P100-SXM2-16GB:power
-    char anEvent[64] = "nvml:::GeForce_GTX_TITAN_X:device_0:power";
-    char *EventName[] = { anEvent };
     int events[NUM_EVENTS];
     int eventCount = 0;
      
@@ -58,20 +51,20 @@ c = (int *)malloc(n * sizeof(int));
     if( retval != PAPI_VER_CURRENT )
         fprintf( stderr, "PAPI_library_init failed\n" );
      
-    printf( "PAPI_VERSION     : %4d %6d %7d\n",
-            PAPI_VERSION_MAJOR( PAPI_VERSION ),
-            PAPI_VERSION_MINOR( PAPI_VERSION ),
-            PAPI_VERSION_REVISION( PAPI_VERSION ) );
+    // printf( "PAPI_VERSION     : %4d %6d %7d\n",
+    //         PAPI_VERSION_MAJOR( PAPI_VERSION ),
+    //         PAPI_VERSION_MINOR( PAPI_VERSION ),
+    //         PAPI_VERSION_REVISION( PAPI_VERSION ) );
      
      /* convert PAPI native events to PAPI code */
     for( i = 0; i < NUM_EVENTS; i++ ){
-        retval = PAPI_event_name_to_code( EventName[i], &events[i] );
+        retval = PAPI_event_name_to_code( argv[2], &events[i] );
         if( retval != PAPI_OK ) {
             fprintf( stderr, "PAPI_event_name_to_code failed\n" );
             continue;
         }
         eventCount++;
-        printf( "Name %s --- Code: %#x\n", EventName[i], events[i] );
+        //printf( "Name %s --- Code: %#x\n", EventName[i], events[i] );
     }
  
     /* if we did not find any valid events, just report test failed. */
@@ -101,9 +94,9 @@ c = (int *)malloc(n * sizeof(int));
  #endif
  
      
-//===============================================
-if(strcmp(argv[1],"Add")==0){ Add<<<Db, Dg>>>(d_c); }
-        else if(strcmp(argv[1],"Abs")==0){ Abs<<<Db, Dg>>>(d_c); }
+    if(strcmp(argv[1],"Ovhd")==0){ Ovhd<<<Db, Dg>>>(d_c); }
+    else if(strcmp(argv[1],"Add")==0){ Add<<<Db, Dg>>>(d_c); }
+    else if(strcmp(argv[1],"Abs")==0){ Abs<<<Db, Dg>>>(d_c); }
     else if(strcmp(argv[1],"Bfind")==0){ Bfind<<<Db, Dg>>>(d_c); }
     else if(strcmp(argv[1],"Clz")==0){ Clz<<<Db, Dg>>>(d_c); }
     else if(strcmp(argv[1],"Cnot")==0){ Cnot<<<Db, Dg>>>(d_c); }
@@ -130,9 +123,8 @@ if(strcmp(argv[1],"Add")==0){ Add<<<Db, Dg>>>(d_c); }
     else if(strcmp(argv[1],"Sad")==0){ Sad<<<Db, Dg>>>(d_c); }
     else if(strcmp(argv[1],"Sin")==0){ Sin<<<Db, Dg>>>(d_c); }
     else if(strcmp(argv[1],"Sqrt")==0){ Sqrt<<<Db, Dg>>>(d_c); }
-        else { printf("Wrong Command\n"); exit(0); }
-	//mmRun();
-//===============================================
+    else { printf("Wrong Command\n"); exit(0); }
+	
 cudaMemcpy(c, d_c, n * sizeof(int), cudaMemcpyDeviceToHost);
  
 #ifdef PAPI
@@ -141,15 +133,12 @@ cudaMemcpy(c, d_c, n * sizeof(int), cudaMemcpyDeviceToHost);
         fprintf( stderr, "PAPI_stop failed\n" );
  
     for( i = 0; i < eventCount; i++ )
-        printf( "On device %d: %12lld \t\t --> %s \n", cuda_device, (values[i]), EventName[i] );
+        //printf( "On device %d: %12lld \t\t --> %s \n", cuda_device, (values[i]), EventName[i] );
+        printf("Kernel Power: %12lld mW\n",values[i]);
 #endif
 }
 
-    printf("\n");
-
     cudaDeviceSynchronize();
-
-   // printf("add/sub/min/max : %d\n",((c[1]-45000000)/20000000));
  
     /* Free Device Memory */
     cudaFree(d_c);

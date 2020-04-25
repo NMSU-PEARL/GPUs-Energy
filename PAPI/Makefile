@@ -4,6 +4,8 @@ PAPI_CUDA_ROOT = /software/cuda-10.1
 ARCH_CC = 50
 ARCH = arch=compute_$(ARCH_CC),code=sm_$(ARCH_CC)
 
+PAPI_EVENT = $(shell $(PAPI_ROOT)/bin/papi_native_avail | grep power | cut -d " " -f2 | head -1)
+
 PAPI_NVML_ROOT ?= $(PAPI_CUDA_ROOT)
 PAPI_NVML_INC ?= $(PAPI_CUDA_ROOT)/include
 PAPI_NVML_LIB ?= $(PAPI_CUDA_ROOT)/lib64/stubs
@@ -41,7 +43,7 @@ opt: pipeline.cu $(UTILOBJS)
 
 run: $(type)
 	@mkdir -p output
-	@./run.sh
+	@./run.sh $(PAPI_EVENT)
 
 clean:
 	rm -f $(TESTS) *.o
