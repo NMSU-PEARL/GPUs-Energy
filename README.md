@@ -6,7 +6,7 @@
 
 ## Hardware Dependencies
 
-* A GPU device with compute capabilty = 3.5 or later (Kepler architecture)
+* A GPU device with compute capability = 3.5 or later (Kepler architecture)
 
 ## Software Dependencies
 
@@ -18,9 +18,13 @@
 
 * **Instructions_Microbenchmarks:** PTX microbenchmarks to stress the GPU and compute the energy consumption of each instruction using MTSM technique
 
+* **PAPI:** Compute the energy consumption of each instruction using PAPI-API
+
 * **SMA:** Query the GPU's onboard power sensors to read the instantaneous power usage of the GPU device using NVML - Sampling Monitoring Approach running in the background
 
 * **MTSM:** Compute the energy consumption of any GPU Kernel using Multi-Threaded Synchronized Monitoring (MTSM)
+
+
 
 
 ## Paper
