@@ -12,13 +12,13 @@ The CPU host file (*pipeline.cu*) launches each GPU instruction's microbenchmark
 
 * To compile and run:
 
-    **1. Run the optimized version (*-O0*):**
+    **1. Run the optimized version (*-O3*):**
 
     ```
     make type=opt run
     ```
 
-    **2. Run the non-optimized version (*-O3*):**
+    **2. Run the non-optimized version (*-O0*):**
 
     ```
     make type=nonOpt run
